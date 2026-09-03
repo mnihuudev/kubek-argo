@@ -1,0 +1,7 @@
+apiVersion: v2
+name: my-wordpress
+
+dependencies:
+  - name: wordpress
+    version: 25.0.0
+    repository: https://charts.bitnami.com/bitnami
