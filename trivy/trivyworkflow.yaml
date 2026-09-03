@@ -1,8 +1,18 @@
-container:
-  image: aquasec/trivy:latest
-  command:
-    - trivy
-  args:
-    - config
-    - /src
-    - --skip-db-update
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: trivy-version
+  namespace: argo
+
+spec:
+  serviceAccountName: argo
+  entrypoint: scan
+
+  templates:
+    - name: scan
+      container:
+        image: aquasec/trivy:latest
+        command:
+          - trivy
+        args:
+          - --version
