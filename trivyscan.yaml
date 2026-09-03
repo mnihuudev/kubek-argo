@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: trivy-repo-scan
+  namespace: argo
+
+spec:
+  serviceAccountName: argo
+  entrypoint: scan
+
+  volumes:
+    - name: workspace
+      emptyDir: {}
+
+  templates:
+
+    - name: scan
+      steps:
+        - - name: clone-repo
+            template: clone-repo
+
+        - - name: scan-repo
+            template: scan-repo
+
+    - name: clone-repo
+      container:
+        image: alpine/git
+        command:
+          - sh
+          - -c
+        args:
+          - |
+            git clone https://github.com/mnihuudev/kubek-argo.git /workspace
+            echo "=== FILES ==="
+            find /workspace
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+
+    - name: scan-repo
+      container:
+        image: aquasec/trivy:latest
+        command:
+          - sh
+          - -c
+        args:
+          - |
+            echo "=== FILES FOUND BY TRIVY ==="
+            find /workspace
+
+            echo "=== TRIVY SCAN ==="
+            trivy config /workspace
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
