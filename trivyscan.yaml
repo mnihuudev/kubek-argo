@@ -20,7 +20,7 @@ spec:
             template: clone-repo
 
         - - name: scan-repo
-            template: scan-repo
+            template: scan-repo --skip-db-update
 
     - name: clone-repo
       container:
