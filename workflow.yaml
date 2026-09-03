@@ -13,4 +13,4 @@ spec:
         image: busybox
         command: [echo]
         args:
-          - "Hello from Argo Workflow"
+          - "Hello from Argo Workflow sss"
