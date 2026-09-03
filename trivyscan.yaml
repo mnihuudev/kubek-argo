@@ -50,7 +50,8 @@ spec:
             find /workspace
 
             echo "=== TRIVY SCAN ==="
-            trivy config /workspace --skip-db-update
+            trivy config /workspace --skip-check-update
+Show more lines
         volumeMounts:
           - name: workspace
             mountPath: /workspace
