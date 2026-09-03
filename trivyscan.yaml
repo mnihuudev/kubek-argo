@@ -40,7 +40,7 @@ spec:
 
     - name: scan-repo
       container:
-        image: aquasec/trivy:latest
+        image: trivy-offline:1.0
         command:
           - sh
           - -c
