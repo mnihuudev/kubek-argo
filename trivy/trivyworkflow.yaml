@@ -1,0 +1,8 @@
+container:
+  image: aquasec/trivy:latest
+  command:
+    - trivy
+  args:
+    - config
+    - /src
+    - --skip-db-update
