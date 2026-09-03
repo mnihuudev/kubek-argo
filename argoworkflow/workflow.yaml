@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: hello-workflow
+  namespace: argo
+
+spec:
+  entrypoint: hello
+
+  templates:
+    - name: hello
+      container:
+        image: busybox
+        command: [echo]
+        args:
+          - "Hello from Argo Workflow"
