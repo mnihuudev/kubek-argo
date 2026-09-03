@@ -5,6 +5,8 @@ metadata:
   namespace: argo
 
 spec:
+  serviceAccountName: argo
+
   entrypoint: hello
 
   templates:
@@ -13,4 +15,4 @@ spec:
         image: busybox
         command: [echo]
         args:
-          - "Hello from Argo Workflow sserers"
+          - "Hello from Argo Workflow"
