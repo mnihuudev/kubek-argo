@@ -13,6 +13,7 @@ spec:
     - name: hello
       container:
         image: busybox
-        command: [echo]
+        command:
+          - echo
         args:
           - "Hello from Argo Workflow"
